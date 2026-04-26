@@ -1,1 +1,64 @@
-Este � o conte�do detalhado do **Projeto Placeholder 1**. Aqui voc� pode descrever os desafios, a solu��o e as tecnologias utilizadas.
+# Arctic
+
+O **Arctic** é um projeto que nasceu da necessidade de visualizar métricas de infraestrutura de forma clara e rápida. Desenvolvido com as tecnologias mais modernas do ecossistema JavaScript, ele entrega uma experiência de usuário premium e performance de ponta.
+
+---
+
+## 🎨 O Processo de Design
+
+Todo o projeto começou no **Figma**, onde criei um sistema de design completo (Design System) focado em acessibilidade e modo escuro. O objetivo era criar uma interface que não causasse fadiga visual mesmo após horas de uso.
+
+![Processo no Figma](/assets/projects/project-1/figma.png)
+
+### Diferenciais do Design:
+- **Glassmorphism**: Uso sutil de transparências para profundidade.
+- **Micro-interações**: Feedback visual em cada clique.
+- **Tipografia**: Uso da fonte *Inter* para máxima legibilidade.
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+Para garantir que o Arctic fosse rápido e escalável, utilizei a seguinte stack:
+
+- **Frontend**: [React](https://react.dev) com [Next.js](https://nextjs.org) (App Router).
+- **Estilização**: [Tailwind CSS v4](https://tailwindcss.com) para um design atômico e eficiente.
+- **Backend**: [Hono](https://hono.dev) rodando em [Cloudflare Workers](https://workers.cloudflare.com).
+- **Tipagem**: TypeScript em 100% da base de código.
+
+---
+
+## 💻 Exemplo de Código
+
+Aqui está um exemplo de como implementamos a lógica de monitoramento em tempo real usando o Hono:
+
+```typescript
+// src/api/monitor.ts
+import { Hono } from 'hono'
+
+const app = new Hono()
+
+app.get('/metrics/:serverId', async (c) => {
+  const id = c.req.param('serverId')
+  
+  // Lógica de busca de métricas em tempo real
+  const stats = await getRealtimeStats(id)
+  
+  return c.json({
+    status: 'online',
+    cpu: stats.usage,
+    memory: stats.ram,
+    timestamp: new Date().toISOString()
+  })
+})
+
+export default app
+```
+
+---
+
+## 🚀 Desafios e Soluções
+
+Um dos maiores desafios foi a renderização de grandes volumes de dados em gráficos sem perder frames. A solução foi utilizar a biblioteca **TanStack Table** e **Recharts** com técnicas de virtualização, garantindo 60fps constantes.
+
+> "O Arctic não é apenas uma ferramenta, é o cockpit que todo desenvolvedor merece ter para cuidar de sua infraestrutura."

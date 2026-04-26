@@ -9,6 +9,8 @@ export const renderer = jsxRenderer(({ children, title }: { children?: any; titl
       <head>
         <title>{title ? `${title} | ${siteConfig.name}` : siteConfig.name}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" />
+
         
         {import.meta.env.PROD ? (
           <style dangerouslySetInnerHTML={{ __html: css }} />

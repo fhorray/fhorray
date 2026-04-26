@@ -1,1 +1,64 @@
-This is the detailed content for **Placeholder Project 1**. Here you can describe the challenges, the solution, and the technologies used.
+# Arctic
+
+**Arctic** is a project born from the need to visualize infrastructure metrics clearly and quickly. Developed with the most modern technologies in the JavaScript ecosystem, it delivers a premium user experience and top-notch performance.
+
+---
+
+## 🎨 The Design Process
+
+The entire project started in **Figma**, where I created a complete Design System focused on accessibility and dark mode. The goal was to create an interface that wouldn't cause visual fatigue even after hours of use.
+
+![Figma Process](/assets/projects/project-1/figma.png)
+
+### Design Differentials:
+- **Glassmorphism**: Subtle use of transparencies for depth.
+- **Micro-interactions**: Visual feedback on every click.
+- **Typography**: Using the *Inter* font for maximum legibility.
+
+---
+
+## 🛠️ Technologies Used
+
+To ensure Arctic was fast and scalable, I used the following stack:
+
+- **Frontend**: [React](https://react.dev) with [Next.js](https://nextjs.org) (App Router).
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com) for an atomic and efficient design.
+- **Backend**: [Hono](https://hono.dev) running on [Cloudflare Workers](https://workers.cloudflare.com).
+- **Typing**: TypeScript in 100% of the codebase.
+
+---
+
+## 💻 Code Example
+
+Here is an example of how we implemented real-time monitoring logic using Hono:
+
+```typescript
+// src/api/monitor.ts
+import { Hono } from 'hono'
+
+const app = new Hono()
+
+app.get('/metrics/:serverId', async (c) => {
+  const id = c.req.param('serverId')
+  
+  // Real-time metrics fetching logic
+  const stats = await getRealtimeStats(id)
+  
+  return c.json({
+    status: 'online',
+    cpu: stats.usage,
+    memory: stats.ram,
+    timestamp: new Date().toISOString()
+  })
+})
+
+export default app
+```
+
+---
+
+## 🚀 Challenges and Solutions
+
+One of the biggest challenges was rendering large volumes of data in charts without dropping frames. The solution was to use **TanStack Table** and **Recharts** with virtualization techniques, ensuring constant 60fps.
+
+> "Arctic is not just a tool, it's the cockpit every developer deserves to have to take care of their infrastructure."

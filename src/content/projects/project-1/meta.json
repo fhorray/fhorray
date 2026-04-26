@@ -1,12 +1,13 @@
 {
   "pt": {
-    "title": "Projeto Placeholder 1",
-    "description": "Este é um projeto de exemplo para demonstrar o layout do portfólio e como os detalhes são exibidos."
+    "title": "Arctic - Monitoramento SaaS de Alta Performance",
+    "description": "Uma plataforma robusta para monitoramento de infraestrutura em tempo real, focada em desenvolvedores e equipes de SRE."
   },
   "en": {
-    "title": "Placeholder Project 1",
-    "description": "This is a sample project to demonstrate the portfolio layout and how details are displayed."
+    "title": "Arctic - High-Performance SaaS Monitoring",
+    "description": "A robust platform for real-time infrastructure monitoring, focused on developers and SRE teams."
   },
   "cover": "/assets/projects/project-1/cover.png",
-  "tags": ["ui-design", "react", "typescript"]
+  "tags": ["React", "Nextjs", "TypeScript", "Tailwind", "Hono", "Cloudflare"]
+
 }

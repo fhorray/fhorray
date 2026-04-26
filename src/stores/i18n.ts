@@ -11,7 +11,6 @@ const translations = import.meta.glob<{ default: Record<string, unknown> }>('../
 export const i18n = createI18n(locale, {
   baseLocale: 'pt',
   async get(code) {
-    console.log(`[i18n] Loading: ${code}`)
     const path = `../../public/translations/${code}.json`
     const loader = translations[path]
     if (loader) {

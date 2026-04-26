@@ -7,6 +7,59 @@
   --color-neutral-950: #0a0a0a;
 }
 
+/* Custom Code Block UI */
+.prose pre {
+  padding: 0 !important;
+  background-color: #1e1e1e !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  overflow: hidden !important;
+  margin-top: 2rem !important;
+  margin-bottom: 2rem !important;
+}
 
 
+.prose pre code {
+  display: block !important;
+  padding: 1.5rem !important;
+  line-height: 1.4 !important;
+  font-size: 0.875rem !important;
+  background-color: transparent !important;
+  border: none !important;
+}
+
+/* Mock Window Header for Code Blocks */
+.prose pre::before {
+  content: "";
+  display: block;
+  height: 32px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background-image: radial-gradient(circle, #ff5f56 6px, transparent 7px),
+                    radial-gradient(circle, #ffbd2e 6px, transparent 7px),
+                    radial-gradient(circle, #27c93f 6px, transparent 7px);
+  background-size: 24px 24px, 24px 24px, 24px 24px;
+  background-position: 12px center, 32px center, 52px center;
+  background-repeat: no-repeat;
+}
+
+/* Fix line spacing in general prose */
+.prose p {
+  line-height: 1.5 !important;
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+
+/* Fix list item spacing */
+.prose li {
+  margin-top: 0.25rem !important;
+  margin-bottom: 0.25rem !important;
+}
+
+
+.prose ul, .prose ol {
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+}
 

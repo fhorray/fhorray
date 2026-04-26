@@ -106,19 +106,21 @@ app.get('/', async (c) => {
         <h1 className="text-4xl font-bold text-gray-900 dark:text-white tracking-tight">{t.name}</h1>
         <div className="flex items-center gap-4">
           <div className="flex gap-2 p-1 bg-gray-100 dark:bg-gray-800 rounded-lg">
-            <a href="?lang=pt" className={`px-3 py-1 rounded-md text-sm font-semibold transition-all ${lang === 'pt' ? 'bg-white dark:bg-gray-700 shadow-sm text-black dark:text-white' : 'text-gray-500 hover:text-gray-900 dark:hover:text-gray-200'}`}>PT</a>
-            <a href="?lang=en" className={`px-3 py-1 rounded-md text-sm font-semibold transition-all ${lang === 'en' ? 'bg-white dark:bg-gray-700 shadow-sm text-black dark:text-white' : 'text-gray-500 hover:text-gray-900 dark:hover:text-gray-200'}`}>EN</a>
+            <a href="?lang=pt" className={`px-3 py-1 rounded-md text-sm font-semibold transition-all ${lang === 'pt' ? 'bg-white dark:bg-gray-700 text-black dark:text-white' : 'text-gray-500 hover:text-gray-900 dark:hover:text-gray-200'}`}>PT</a>
+            <a href="?lang=en" className={`px-3 py-1 rounded-md text-sm font-semibold transition-all ${lang === 'en' ? 'bg-white dark:bg-gray-700 text-black dark:text-white' : 'text-gray-500 hover:text-gray-900 dark:hover:text-gray-200'}`}>EN</a>
           </div>
+
           <button
             id="contact-trigger"
-            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold rounded-lg transition-all transform active:scale-95 shadow-sm cursor-pointer"
+            className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold rounded-lg transition-all transform active:scale-95 cursor-pointer"
           >
+
             {t.contact}
           </button>
           <ThemeToggle />
         </div>
 
-      </div>
+      </div >
 
 
       <div className="prose prose-slate dark:prose-invert max-w-none mb-12">
@@ -156,14 +158,14 @@ app.get('/', async (c) => {
           <a
             key={project.slug}
             href={`/projects/${project.slug}`}
-            className="group block bg-white dark:bg-neutral-900 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 dark:border-neutral-800 hover:-translate-y-0.5"
+            className="group block bg-white dark:bg-neutral-900 rounded-xl overflow-hidden transition-all duration-300 border border-gray-100 dark:border-neutral-800 hover:-translate-y-0.5"
           >
             <div className="aspect-video bg-gray-50 dark:bg-neutral-800 relative overflow-hidden">
               {project.cover ? (
                 <img
                   src={project.cover}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-700"
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-200 dark:from-neutral-800 dark:to-neutral-900">
@@ -171,14 +173,14 @@ app.get('/', async (c) => {
                 </div>
               )}
               {project.video && (
-                <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-2 py-0.5 rounded-md border border-white/20 text-[10px] text-white font-bold uppercase tracking-widest flex items-center gap-1.5 shadow-sm">
+                <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-2 py-0.5 rounded-md border border-white/20 text-[10px] text-white font-bold uppercase tracking-widest flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
                   Video
                 </div>
               )}
             </div>
-            <div className="p-8">
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+            <div className="p-4">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
                 {project.title}
               </h3>
               <p className="text-gray-600 dark:text-neutral-400 text-sm line-clamp-2 leading-relaxed mb-6">
@@ -190,7 +192,7 @@ app.get('/', async (c) => {
                     const techList = ['cloudflare', 'hono', 'typescript', 'nodejs', 'bun', 'react', 'nextjs', 'golang', 'rust', 'cloudflare-workers', 'docker']
                     const isTech = techList.includes(tag.toLowerCase())
                     return (
-                      <span key={tag} className="px-2.5 py-1 bg-gray-50 dark:bg-neutral-800 text-gray-500 dark:text-neutral-400 text-[10px] font-bold uppercase tracking-wider rounded border border-gray-100 dark:border-neutral-700 group-hover:border-blue-100 dark:group-hover:border-blue-900 group-hover:bg-blue-50 dark:group-hover:bg-blue-900/30 transition-colors flex items-center gap-1.5">
+                      <span key={tag} className="px-2.5 py-1 bg-gray-50 dark:bg-neutral-800 text-gray-500 dark:text-neutral-400 text-[10px] font-bold uppercase tracking-wider rounded border border-gray-100 dark:border-neutral-700 group-hover:border-purple-100 dark:group-hover:border-purple-900 group-hover:bg-purple-50 dark:group-hover:bg-purple-900/30 transition-colors flex items-center gap-1.5">
                         {isTech && <TechIcon name={tag.toLowerCase() as any} size={12} className="grayscale-0 opacity-100" />}
                         {tag}
                       </span>
@@ -213,7 +215,7 @@ app.get('/', async (c) => {
         successMessage={t.modalSuccess}
         errorMessage={t.modalError}
       />
-    </div>,
+    </div >,
     { title: siteConfig.name }
   )
 })
@@ -253,7 +255,7 @@ app.get('/projects/:slug', async (c) => {
           <div className="flex items-center gap-4">
             <button
               id="contact-trigger"
-              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold rounded-lg transition-all transform active:scale-95 shadow-sm"
+              className="cursor-pointer px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold rounded-lg transition-all transform active:scale-95"
             >
               {t.contact}
             </button>
@@ -266,7 +268,7 @@ app.get('/projects/:slug', async (c) => {
           <div className="mb-12">
             <h1 className="text-4xl font-black text-gray-900 dark:text-white mb-6">{meta[lang]?.title || meta.pt.title}</h1>
 
-            <div className="aspect-video w-full bg-gray-100 dark:bg-neutral-900 rounded-xl overflow-hidden mb-8 shadow-lg">
+            <div className="aspect-video w-full bg-gray-100 dark:bg-neutral-900 rounded-xl overflow-hidden mb-8">
               {meta.video ? (
                 <video
                   src={meta.video}
@@ -283,7 +285,7 @@ app.get('/projects/:slug', async (c) => {
                 const techList = ['cloudflare', 'hono', 'typescript', 'nodejs', 'bun', 'react', 'nextjs', 'golang', 'rust', 'cloudflare-workers', 'docker']
                 const isTech = techList.includes(tag.toLowerCase())
                 return (
-                  <span key={tag} className="px-3 py-1.5 bg-gray-50 dark:bg-neutral-900 text-gray-500 dark:text-neutral-400 text-xs font-bold uppercase tracking-widest rounded-md border border-gray-200 dark:border-neutral-800 flex items-center gap-2 shadow-sm">
+                  <span key={tag} className="px-3 py-1.5 bg-gray-50 dark:bg-neutral-900 text-gray-500 dark:text-neutral-400 text-xs font-bold uppercase tracking-widest rounded-md border border-gray-200 dark:border-neutral-800 flex items-center gap-2">
                     {isTech && <TechIcon name={tag.toLowerCase() as TechName} size={14} className="grayscale-0 opacity-100" />}
                     {tag}
                   </span>
