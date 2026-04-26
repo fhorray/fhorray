@@ -7,6 +7,6 @@
     "title": "Placeholder Project 1",
     "description": "This is a sample project to demonstrate the portfolio layout and how details are displayed."
   },
-  "cover": "/src/content/projects/project-1/assets/cover.png",
+  "cover": "/assets/projects/project-1/cover.png",
   "tags": ["ui-design", "react", "typescript"]
 }

@@ -10,8 +10,14 @@ export default defineConfig({
     mdx({
       jsxImportSource: 'hono/jsx'
     })
-  ]
+  ],
+  build: {
+    manifest: true
+  }
 })
+
+
+
 
 
 

@@ -1,4 +1,5 @@
 import { Hono } from 'hono'
+
 import { getCookie, setCookie } from 'hono/cookie'
 import { loadTranslations } from '@nanostores/i18n'
 import { i18n, locale } from './stores/i18n'
@@ -7,9 +8,7 @@ import { siteConfig } from './config'
 import { renderer } from './renderer'
 import { ContactModal } from './components/ContactModal'
 
-
 const app = new Hono<{ Bindings: CloudflareBindings }>()
-
 
 
 import type { HtmlEscapedString } from 'hono/utils/html'
@@ -63,10 +62,10 @@ app.post('/api/send-email', async (c) => {
 
   try {
     await c.env.SEND_EMAIL.send({
-      from: "portfolio@francy.dev",
+      from: "Portfolio <portfolio@francy.dev>",
       to: "oi@francy.dev",
-      subject: `Novo contato de ${name}`,
-      text: `Nome: ${name}\n\nMensagem:\n${message}`,
+      subject: `Novo Contato de ${name}`,
+      text: `Você recebeu uma nova mensagem através do seu portfólio.\n\n----------------------------------\nNome: ${name}\n----------------------------------\n\nMensagem:\n${message}\n\n----------------------------------`,
     })
     return c.json({ success: true })
   } catch (err: any) {
@@ -74,6 +73,7 @@ app.post('/api/send-email', async (c) => {
     return c.json({ success: false, error: err.message }, 500)
   }
 })
+
 
 
 app.get('/', async (c) => {
@@ -111,7 +111,7 @@ app.get('/', async (c) => {
           </div>
           <button
             id="contact-trigger"
-            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold rounded-lg transition-all transform active:scale-95 shadow-sm"
+            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold rounded-lg transition-all transform active:scale-95 shadow-sm cursor-pointer"
           >
             {t.contact}
           </button>

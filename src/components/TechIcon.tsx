@@ -5,7 +5,8 @@ export type TechName = 'cloudflare' | 'hono' | 'typescript' | 'nodejs' | 'bun' |
 
 
 export const TechIcon = ({ name, size = 20, className = "" }: { name: TechName, size?: number, className?: string }) => {
-  const path = `/src/assets/common/tech/${name}.svg`
+  const path = `/assets/tech/${name}.svg`
+
 
   // Visual weight balancing
   const scales: Record<string, string> = {

@@ -1,5 +1,9 @@
 
-{props.bio.split('\n\n').map((p, i) => <p key={i}>{p}</p>)}
+<div className="space-y-2">
+
+  {props.bio.split('\n\n').map((p, i) => <p key={i} className="m-0">{p}</p>)}
+</div>
+
 
 <p className="mt-8 font-bold">{props.linksTitle}</p>
 
