@@ -1,0 +1,17 @@
+
+{props.bio.split('\n\n').map((p, i) => <p key={i}>{p}</p>)}
+
+<p className="mt-8 font-bold">{props.linksTitle}</p>
+
+<ul className="list-none p-0 mt-4 space-y-2">
+  <li>GitHub: <a href={props.links.github} target="_blank" className="text-blue-600 dark:text-blue-400 hover:underline">{props.links.github}</a></li>
+  <li>LinkedIn: <a href={props.links.linkedin} target="_blank" className="text-blue-600 dark:text-blue-400 hover:underline">{props.links.linkedin}</a></li>
+  <li>Instagram: <a href={props.links.instagram} target="_blank" className="text-blue-600 dark:text-blue-400 hover:underline">{props.links.instagram}</a></li>
+  <li>WhatsApp: <a href={props.links.whatsapp} target="_blank" className="text-blue-600 dark:text-blue-400 hover:underline">{props.links.whatsapp}</a></li>
+  <li>Email: <a href="#" id="contact-trigger" className="text-blue-600 dark:text-blue-400 hover:underline">{props.links.email}</a></li>
+
+</ul>
+
+<p className="mt-8 text-sm text-gray-500">
+  {props.sourceCode} <a href={props.links.github} target="_blank" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">GitHub</a>.
+</p>

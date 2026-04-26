@@ -1,0 +1,12 @@
+{
+  "pt": {
+    "title": "Projeto Placeholder 2",
+    "description": "Mais um projeto de demonstração com foco em design e performance, utilizando tecnologias modernas."
+  },
+  "en": {
+    "title": "Placeholder Project 2",
+    "description": "Another demo project focused on design and performance, using modern technologies."
+  },
+  "cover": "/src/content/projects/project-2/assets/cover.png",
+  "tags": ["branding", "nextjs", "docker"]
+}

@@ -1,0 +1,12 @@
+{
+  "pt": {
+    "title": "Projeto Placeholder 1",
+    "description": "Este é um projeto de exemplo para demonstrar o layout do portfólio e como os detalhes são exibidos."
+  },
+  "en": {
+    "title": "Placeholder Project 1",
+    "description": "This is a sample project to demonstrate the portfolio layout and how details are displayed."
+  },
+  "cover": "/src/content/projects/project-1/assets/cover.png",
+  "tags": ["ui-design", "react", "typescript"]
+}

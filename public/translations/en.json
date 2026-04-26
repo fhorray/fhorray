@@ -1,0 +1,19 @@
+{
+  "home": {
+    "name": "Francy Santos",
+    "bio": "I am a Web Developer with experience in system creation and Full-Stack development.\n\nPassionate about creating responsive interfaces and writing clean and efficient code.\n\nI am 27 years old and live in São Paulo, Brazil.",
+    "projects": "Projects:",
+    "back": "← Back to home",
+    "linksTitle": "Here are the main links:",
+    "sourceCode": "The source code for this site is on",
+    "contact": "Contact",
+    "modalTitle": "Contact Me",
+    "modalName": "Name",
+    "modalNamePlaceholder": "Your name",
+    "modalMessage": "Message",
+    "modalMessagePlaceholder": "How can I help you?",
+    "modalSend": "Send Email",
+    "modalSuccess": "Message sent successfully!",
+    "modalError": "Error sending message. Please try again."
+  }
+}
