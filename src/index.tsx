@@ -10,7 +10,6 @@ import { ContactModal } from './components/ContactModal'
 
 const app = new Hono<{ Bindings: CloudflareBindings }>()
 
-
 import type { HtmlEscapedString } from 'hono/utils/html'
 
 interface ProjectMeta {
@@ -31,8 +30,8 @@ const projects = import.meta.glob<{ default: (props: Record<string, unknown>) =>
 const projectMeta = import.meta.glob<{ default: ProjectMeta }>('./content/projects/*/meta.json', { eager: true })
 
 import { TechIcon, TechName } from './components/TechIcon'
+import { CVModal } from './components/CVModal'
 import { ThemeToggle } from './components/ThemeToggle'
-
 
 app.use(renderer)
 
@@ -49,7 +48,11 @@ const messages = i18n('home', {
   modalNamePlaceholder: 'Seu nome',
   modalMessage: 'Mensagem',
   modalMessagePlaceholder: 'Como posso ajudar?',
-
+  experiences: 'Experiências',
+  cv: 'Currículo',
+  cvModalTitle: 'Baixe meu CV:',
+  cvPT: 'Português',
+  cvEN: 'English',
   modalSend: 'Enviar E-mail',
   modalSuccess: 'Mensagem enviada com sucesso!',
   modalError: 'Erro ao enviar. Tente novamente.'
@@ -103,11 +106,20 @@ app.get('/', async (c) => {
   return c.render(
     <div className="max-w-4xl mx-auto px-4 py-12">
       <div className="flex justify-between items-center mb-12">
-        <h1 className="text-4xl font-bold text-gray-900 dark:text-white tracking-tight">{t.name}</h1>
+        <div className="flex items-center gap-6">
+          <a href={`/?lang=${lang}`} className="text-3xl font-black text-gray-900 dark:text-white tracking-tighter hover:opacity-80 transition-opacity">{t.name}</a>
+          <nav className="flex items-center ml-4 pl-6 border-l border-gray-100 dark:border-neutral-800 h-8 gap-6">
+            <a href={`/experiences?lang=${lang}`} className="text-xs font-bold text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors uppercase tracking-[0.2em]">{t.experiences}</a>
+            <a href="#" id="cv-trigger" className="text-xs font-bold text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors uppercase tracking-[0.2em]">{t.cv}</a>
+          </nav>
+
+        </div>
+
+
         <div className="flex items-center gap-4">
-          <div className="flex gap-2 p-1 bg-gray-100 dark:bg-gray-800 rounded-lg">
-            <a href="?lang=pt" className={`px-3 py-1 rounded-md text-sm font-semibold transition-all ${lang === 'pt' ? 'bg-white dark:bg-gray-700 text-black dark:text-white' : 'text-gray-500 hover:text-gray-900 dark:hover:text-gray-200'}`}>PT</a>
-            <a href="?lang=en" className={`px-3 py-1 rounded-md text-sm font-semibold transition-all ${lang === 'en' ? 'bg-white dark:bg-gray-700 text-black dark:text-white' : 'text-gray-500 hover:text-gray-900 dark:hover:text-gray-200'}`}>EN</a>
+          <div className="flex p-1 bg-white dark:bg-neutral-900 border border-gray-200 dark:border-neutral-800 rounded-lg h-9">
+            <a href="?lang=pt" className={`px-3 flex items-center rounded-md text-xs font-black transition-all ${lang === 'pt' ? 'bg-gray-100 dark:bg-neutral-800 text-black dark:text-white' : 'text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'}`}>PT</a>
+            <a href="?lang=en" className={`px-3 flex items-center rounded-md text-xs font-black transition-all ${lang === 'en' ? 'bg-gray-100 dark:bg-neutral-800 text-black dark:text-white' : 'text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'}`}>EN</a>
           </div>
 
           <button
@@ -215,16 +227,121 @@ app.get('/', async (c) => {
         successMessage={t.modalSuccess}
         errorMessage={t.modalError}
       />
+      <CVModal
+        title={t.cvModalTitle}
+        ptOption={t.cvPT}
+        enOption={t.cvEN}
+      />
     </div >,
-    { title: siteConfig.name }
+
+    { title: t.name }
   )
 })
 
 
 
+
+import experiences from './content/experiences.json'
+
+app.get('/experiences', async (c) => {
+  const queryLang = c.req.query('lang')
+  const lang = (queryLang || getCookie(c, 'locale') || 'pt') as 'pt' | 'en'
+  const t = (await import(`../public/translations/${lang}.json`)).default.home
+
+  return c.render(
+    <div className="max-w-4xl mx-auto px-4 py-12">
+      <div className="flex justify-between items-center mb-16">
+        <div className="flex items-center gap-6">
+          <a href={`/?lang=${lang}`} className="text-3xl font-black text-gray-900 dark:text-white tracking-tighter hover:opacity-80 transition-opacity">{t.name}</a>
+          <nav className="flex items-center ml-4 pl-6 border-l border-gray-100 dark:border-neutral-800 h-8 gap-6">
+            <a href={`/experiences?lang=${lang}`} className="text-xs font-bold text-purple-600 dark:text-purple-400 uppercase tracking-[0.2em]">{t.experiences}</a>
+            <a href="#" id="cv-trigger" className="text-xs font-bold text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors uppercase tracking-[0.2em]">{t.cv}</a>
+          </nav>
+
+        </div>
+
+        <div className="flex items-center gap-4">
+          <div className="flex p-1 bg-white dark:bg-neutral-900 border border-gray-200 dark:border-neutral-800 rounded-lg h-9">
+            <a href="?lang=pt" className={`px-3 flex items-center rounded-md text-xs font-black transition-all ${lang === 'pt' ? 'bg-gray-100 dark:bg-neutral-800 text-black dark:text-white' : 'text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'}`}>PT</a>
+            <a href="?lang=en" className={`px-3 flex items-center rounded-md text-xs font-black transition-all ${lang === 'en' ? 'bg-gray-100 dark:bg-neutral-800 text-black dark:text-white' : 'text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'}`}>EN</a>
+          </div>
+          <ThemeToggle />
+        </div>
+      </div>
+
+      <h1 className="text-4xl font-black text-gray-900 dark:text-white mb-12 tracking-tight">{t.experiences}</h1>
+
+      <div className="space-y-12 relative before:absolute before:inset-0 before:ml-8 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-100 dark:before:via-neutral-800 before:to-transparent">
+        {experiences.map((exp, idx) => (
+          <div key={exp.company} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+            {/* Icon */}
+            <div className="flex items-center justify-center w-16 h-16 rounded-xl bg-white dark:bg-neutral-900 border border-gray-100 dark:border-neutral-800 absolute left-0 md:left-1/2 md:-translate-x-1/2 z-10 overflow-hidden">
+              <img src={exp.logo} alt={exp.company} className="w-12 h-12 object-contain" />
+            </div>
+
+            {/* Content Card */}
+            <div className="w-[calc(100%-4.5rem)] md:w-[calc(50%-3rem)] bg-white dark:bg-neutral-900/50 p-6 rounded-2xl border border-gray-100 dark:border-neutral-800 transition-all hover:border-purple-500/50">
+              <div className="flex flex-col mb-4">
+                <h3 className="text-xl font-black text-gray-900 dark:text-white leading-tight">{exp.company}</h3>
+                <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mt-1">{exp.location} • {exp.type}</span>
+              </div>
+
+              <div className="space-y-6 relative border-l-2 border-gray-50 dark:border-neutral-800/50 ml-2 pl-6">
+                {exp.roles.map((role: any, rIdx: number) => (
+                  <div key={rIdx} className="relative">
+                    <div className="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full border-2 border-white dark:border-neutral-900 bg-gray-200 dark:bg-neutral-700" />
+                    <h4 className="text-base font-bold text-gray-900 dark:text-white mb-1">{role[lang].title}</h4>
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 text-xs font-bold text-gray-500 dark:text-gray-400 mb-2">
+                      <span>{role[lang].period}</span>
+                      <span className="hidden sm:inline text-gray-300 dark:text-neutral-700">•</span>
+                      <span className="text-purple-600 dark:text-purple-400">{role[lang].duration}</span>
+                    </div>
+                    {role[lang].description && (
+                      <p className="text-sm text-gray-600 dark:text-neutral-400 leading-relaxed">{role[lang].description}</p>
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              {exp.skills && (
+                <div className="mt-6 pt-6 border-t border-gray-50 dark:border-neutral-800/50 flex flex-wrap gap-2">
+                  {exp.skills.map(skill => (
+                    <span key={skill} className="px-2 py-0.5 bg-gray-50 dark:bg-neutral-800/50 text-gray-500 dark:text-neutral-400 text-[10px] font-bold uppercase tracking-widest rounded border border-gray-100 dark:border-neutral-800">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <ContactModal
+        title={t.modalTitle}
+        nameLabel={t.modalName}
+        namePlaceholder={t.modalNamePlaceholder}
+        messageLabel={t.modalMessage}
+        messagePlaceholder={t.modalMessagePlaceholder}
+        sendButton={t.modalSend}
+        successMessage={t.modalSuccess}
+        errorMessage={t.modalError}
+      />
+      <CVModal
+        title={t.cvModalTitle}
+        ptOption={t.cvPT}
+        enOption={t.cvEN}
+      />
+    </div>,
+
+    { title: t.experiences }
+  )
+})
+
 app.get('/projects/:slug', async (c) => {
   const queryLang = c.req.query('lang')
   const lang = (queryLang || getCookie(c, 'locale') || 'pt') as 'pt' | 'en'
+
 
   if (queryLang) {
     setCookie(c, 'locale', lang, { path: '/', maxAge: 60 * 60 * 24 * 365 })
@@ -249,9 +366,16 @@ app.get('/projects/:slug', async (c) => {
     return c.render(
       <div className="max-w-4xl mx-auto px-4 py-12">
         <div className="mb-12 flex justify-between items-center">
-          <a href={`/?lang=${lang}`} className="text-gray-500 hover:text-black dark:hover:text-white transition-colors flex items-center gap-2 font-medium">
-            <span>{t.back}</span>
-          </a>
+          <div className="flex items-center gap-6">
+            <a href={`/?lang=${lang}`} className="text-3xl font-black text-gray-900 dark:text-white tracking-tighter hover:opacity-80 transition-opacity">{t.name}</a>
+            <nav className="flex items-center ml-4 pl-6 border-l border-gray-100 dark:border-neutral-800 h-8 gap-6">
+              <a href={`/experiences?lang=${lang}`} className="text-xs font-bold text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors uppercase tracking-[0.2em]">{t.experiences}</a>
+              <a href="#" id="cv-trigger" className="text-xs font-bold text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors uppercase tracking-[0.2em]">{t.cv}</a>
+            </nav>
+
+          </div>
+
+
           <div className="flex items-center gap-4">
             <button
               id="contact-trigger"
@@ -309,8 +433,15 @@ app.get('/projects/:slug', async (c) => {
           successMessage={t.modalSuccess}
           errorMessage={t.modalError}
         />
+        <CVModal
+          title={t.cvModalTitle}
+          ptOption={t.cvPT}
+          enOption={t.cvEN}
+        />
       </div>,
-      { title: slug }
+
+      { title: meta[lang]?.title || meta.pt.title }
+
     )
 
   }

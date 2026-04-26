@@ -1,0 +1,123 @@
+[
+  {
+    "company": "Construtora Metrocasa",
+    "logo": "/assets/companies/metrocasa_logo.jpg",
+    "location": "São Paulo, Brasil",
+    "type": "Full-time",
+    "roles": [
+      {
+        "pt": {
+          "title": "Full-stack Developer",
+          "period": "jan de 2025 - o momento",
+          "duration": "4 meses"
+        },
+        "en": {
+          "title": "Full-stack Developer",
+          "period": "Jan 2025 - Present",
+          "duration": "4 months"
+        }
+      },
+      {
+        "pt": {
+          "title": "Front-end Developer / Web Designer Jr.",
+          "period": "out de 2023 - jan de 2025",
+          "duration": "1 ano 4 meses"
+        },
+        "en": {
+          "title": "Front-end Developer / Web Designer Jr.",
+          "period": "Oct 2023 - Jan 2025",
+          "duration": "1 year 4 months"
+        }
+      }
+    ],
+    "skills": ["React.js", "SASS", "TypeScript", "Node.js"]
+  },
+  {
+    "company": "Celine Estratégias",
+    "logo": "/assets/companies/celine_estrategias_logo.jpg",
+    "location": "São Paulo, Brasil • Remoto",
+    "type": "Part-time",
+    "roles": [
+      {
+        "pt": {
+          "title": "Web Designer",
+          "period": "mai de 2023 - fev de 2024",
+          "duration": "10 meses",
+          "description": "Criação de protótipos e implementação para clientes da agência."
+        },
+        "en": {
+          "title": "Web Designer",
+          "period": "May 2023 - Feb 2024",
+          "duration": "10 months",
+          "description": "Prototype creation and implementation for agency clients."
+        }
+      }
+    ],
+    "skills": ["Adobe Photoshop", "React.js", "Figma"]
+  },
+  {
+    "company": "A Escola de Sites",
+    "logo": "/assets/companies/aescoladesites_logo.jpg",
+    "location": "São Paulo, Brasil • Remoto",
+    "type": "Freelance",
+    "roles": [
+      {
+        "pt": {
+          "title": "UI Designer",
+          "period": "jan de 2023 - fev de 2024",
+          "duration": "1 ano 2 meses",
+          "description": "Criação de Layouts utilizando o Figma para clientes da agência."
+        },
+        "en": {
+          "title": "UI Designer",
+          "period": "Jan 2023 - Feb 2024",
+          "duration": "1 year 2 months",
+          "description": "Layout creation using Figma for agency clients."
+        }
+      }
+    ],
+    "skills": ["UI Design", "UX", "Figma"]
+  },
+  {
+    "company": "Abendi",
+    "logo": "/assets/companies/abendioficial_logo.jpg",
+    "location": "São Paulo",
+    "type": "Full-time",
+    "roles": [
+      {
+        "pt": {
+          "title": "Web Designer Jr.",
+          "period": "mai de 2023 - ago de 2023",
+          "duration": "4 meses"
+        },
+        "en": {
+          "title": "Web Designer Jr.",
+          "period": "May 2023 - Aug 2023",
+          "duration": "4 months"
+        }
+      }
+    ],
+    "skills": ["React.js", "SASS"]
+  },
+  {
+    "company": "Live eCommerce",
+    "logo": "/assets/companies/liveecommerce_logo.jpg",
+    "location": "São Paulo, Brasil",
+    "type": "Full-time",
+    "roles": [
+      {
+        "pt": {
+          "title": "Designer Gráfico",
+          "period": "jul de 2021 - mar de 2023",
+          "duration": "1 ano 9 meses"
+        },
+        "en": {
+          "title": "Graphic Designer",
+          "period": "Jul 2021 - Mar 2023",
+          "duration": "1 year 9 months"
+        }
+      }
+    ],
+    "skills": ["SASS", "Adobe Illustrator", "Photoshop"]
+  }
+]

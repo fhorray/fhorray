@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "Francy Santos",
 
-  bio: "Sou um Desenvolvedor Web com experiência em criação de sistemas e desenvolvimento Full-Stack.\n\nApaixonado por criar interfaces responsivas e escrever código limpo e eficiente.\n\nTenho 27 anos e moro em São Paulo, Brasil.",
+  bio: "Sou um Desenvolvedor Fullstack especialista em arquiteturas Serverless e soluções de alta escalabilidade. Com um background sólido em Design Gráfico e UI, uno estética e performance no ecossistema Cloudflare (Workers, KV, D1, R2 etc...), além de dominar plataformas como Vercel e AWS Amplify.\n\nTransformo ideias complexas em experiências digitais completas e performáticas, priorizando sempre a Developer Experience e a entrega de produtos robustos de ponta a ponta.",
   links: {
     github: "https://github.com/fhorray",
     linkedin: "https://www.linkedin.com/in/francysantos/",

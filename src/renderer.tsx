@@ -7,7 +7,8 @@ export const renderer = jsxRenderer(({ children, title }: { children?: any; titl
   return (
     <html>
       <head>
-        <title>{title ? `${title} | ${siteConfig.name}` : siteConfig.name}</title>
+        <title>{title ? `${title} | Portfólio` : siteConfig.name}</title>
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" />
 
