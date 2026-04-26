@@ -13,7 +13,7 @@ I love creating responsive interfaces and writing clean and efficient code.<br /
     <h2 align="center">You can contact me here:</h2>
     <p align="center">
       <br/>
-      <a href="https://www.linkedin.com/in/francysantos/" target="blank"><img align="center"
+      <a href="https://www.linkedin.com/in/francysantos" target="blank"><img align="center"
          src="https://img.shields.io/badge/linkedin-%231DA1F2.svg?style=for-the-badge&logo=linkedin&logoColor=white"
          alt="fhorray" height="30"/></a>
       <a href="mailto:francy.horray@gmail.com" target="blank"><img align="center"

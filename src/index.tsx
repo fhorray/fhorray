@@ -111,10 +111,9 @@ app.get('/', async (c) => {
           <nav className="flex items-center ml-4 pl-6 border-l border-gray-100 dark:border-neutral-800 h-8 gap-6">
             <a href={`/experiences?lang=${lang}`} className="text-xs font-bold text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors uppercase tracking-[0.2em]">{t.experiences}</a>
             <a href="#" id="cv-trigger" className="text-xs font-bold text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors uppercase tracking-[0.2em]">{t.cv}</a>
+            <a href="#" id="contact-trigger" className="text-xs font-bold text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors uppercase tracking-[0.2em]">{t.contact}</a>
           </nav>
-
         </div>
-
 
         <div className="flex items-center gap-4">
           <div className="flex p-1 bg-white dark:bg-neutral-900 border border-gray-200 dark:border-neutral-800 rounded-lg h-9">
@@ -122,16 +121,8 @@ app.get('/', async (c) => {
             <a href="?lang=en" className={`px-3 flex items-center rounded-md text-xs font-black transition-all ${lang === 'en' ? 'bg-gray-100 dark:bg-neutral-800 text-black dark:text-white' : 'text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'}`}>EN</a>
           </div>
 
-          <button
-            id="contact-trigger"
-            className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold rounded-lg transition-all transform active:scale-95 cursor-pointer"
-          >
-
-            {t.contact}
-          </button>
           <ThemeToggle />
         </div>
-
       </div >
 
 
@@ -256,17 +247,14 @@ app.get('/experiences', async (c) => {
           <nav className="flex items-center ml-4 pl-6 border-l border-gray-100 dark:border-neutral-800 h-8 gap-6">
             <a href={`/experiences?lang=${lang}`} className="text-xs font-bold text-purple-600 dark:text-purple-400 uppercase tracking-[0.2em]">{t.experiences}</a>
             <a href="#" id="cv-trigger" className="text-xs font-bold text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors uppercase tracking-[0.2em]">{t.cv}</a>
+            <a href="#" id="contact-trigger" className="text-xs font-bold text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors uppercase tracking-[0.2em]">{t.contact}</a>
           </nav>
-
         </div>
 
         <div className="flex items-center gap-4">
-          <div className="flex p-1 bg-white dark:bg-neutral-900 border border-gray-200 dark:border-neutral-800 rounded-lg h-9">
-            <a href="?lang=pt" className={`px-3 flex items-center rounded-md text-xs font-black transition-all ${lang === 'pt' ? 'bg-gray-100 dark:bg-neutral-800 text-black dark:text-white' : 'text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'}`}>PT</a>
-            <a href="?lang=en" className={`px-3 flex items-center rounded-md text-xs font-black transition-all ${lang === 'en' ? 'bg-gray-100 dark:bg-neutral-800 text-black dark:text-white' : 'text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'}`}>EN</a>
-          </div>
           <ThemeToggle />
         </div>
+
       </div>
 
       <h1 className="text-4xl font-black text-gray-900 dark:text-white mb-12 tracking-tight">{t.experiences}</h1>
@@ -371,18 +359,12 @@ app.get('/projects/:slug', async (c) => {
             <nav className="flex items-center ml-4 pl-6 border-l border-gray-100 dark:border-neutral-800 h-8 gap-6">
               <a href={`/experiences?lang=${lang}`} className="text-xs font-bold text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors uppercase tracking-[0.2em]">{t.experiences}</a>
               <a href="#" id="cv-trigger" className="text-xs font-bold text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors uppercase tracking-[0.2em]">{t.cv}</a>
+              <a href="#" id="contact-trigger" className="text-xs font-bold text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors uppercase tracking-[0.2em]">{t.contact}</a>
             </nav>
-
           </div>
 
 
           <div className="flex items-center gap-4">
-            <button
-              id="contact-trigger"
-              className="cursor-pointer px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold rounded-lg transition-all transform active:scale-95"
-            >
-              {t.contact}
-            </button>
             <ThemeToggle />
           </div>
         </div>
