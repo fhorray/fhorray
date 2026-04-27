@@ -32,6 +32,7 @@ const projectMeta = import.meta.glob<{ default: ProjectMeta }>('./content/projec
 import { TechIcon, TechName } from './components/TechIcon'
 import { CVModal } from './components/CVModal'
 import { ThemeToggle } from './components/ThemeToggle'
+import { Header } from './components/Header'
 
 app.use(renderer)
 
@@ -105,25 +106,7 @@ app.get('/', async (c) => {
 
   return c.render(
     <div className="max-w-4xl mx-auto px-4 py-12">
-      <div className="flex justify-between items-center mb-12">
-        <div className="flex items-center gap-6">
-          <a href={`/?lang=${lang}`} className="text-3xl font-black text-gray-900 dark:text-white tracking-tighter hover:opacity-80 transition-opacity">{t.name}</a>
-          <nav className="flex items-center ml-4 pl-6 border-l border-gray-100 dark:border-neutral-800 h-8 gap-6">
-            <a href={`/experiences?lang=${lang}`} className="text-xs font-bold text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors uppercase tracking-[0.2em]">{t.experiences}</a>
-            <a href="#" id="cv-trigger" className="text-xs font-bold text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors uppercase tracking-[0.2em]">{t.cv}</a>
-            <a href="#" id="contact-trigger" className="text-xs font-bold text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors uppercase tracking-[0.2em]">{t.contact}</a>
-          </nav>
-        </div>
-
-        <div className="flex items-center gap-4">
-          <div className="flex p-1 bg-white dark:bg-neutral-900 border border-gray-200 dark:border-neutral-800 rounded-lg h-9">
-            <a href="?lang=pt" className={`px-3 flex items-center rounded-md text-xs font-black transition-all ${lang === 'pt' ? 'bg-gray-100 dark:bg-neutral-800 text-black dark:text-white' : 'text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'}`}>PT</a>
-            <a href="?lang=en" className={`px-3 flex items-center rounded-md text-xs font-black transition-all ${lang === 'en' ? 'bg-gray-100 dark:bg-neutral-800 text-black dark:text-white' : 'text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'}`}>EN</a>
-          </div>
-
-          <ThemeToggle />
-        </div>
-      </div >
+      <Header name={t.name} lang={lang} t={t} currentPath={c.req.path} />
 
 
       <div className="prose prose-slate dark:prose-invert max-w-none mb-12">
@@ -152,7 +135,7 @@ app.get('/', async (c) => {
       </div>
 
 
-      <h2 className="text-2xl font-extrabold text-gray-900 dark:text-white mb-8 border-b-2 border-gray-100 dark:border-slate-800 pb-4">{t.projects}</h2>
+      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 border-b-2 border-gray-100 dark:border-slate-800 pb-4">{t.projects}</h2>
 
 
 
@@ -161,7 +144,7 @@ app.get('/', async (c) => {
           <a
             key={project.slug}
             href={`/projects/${project.slug}`}
-            className="group block bg-white dark:bg-neutral-900 rounded-xl overflow-hidden transition-all duration-300 border border-gray-100 dark:border-neutral-800 hover:-translate-y-0.5"
+            className="group block bg-white dark:bg-neutral-900 overflow-hidden transition-all duration-300 border border-gray-100 dark:border-neutral-800"
           >
             <div className="aspect-video bg-gray-50 dark:bg-neutral-800 relative overflow-hidden">
               {project.cover ? (
@@ -176,7 +159,7 @@ app.get('/', async (c) => {
                 </div>
               )}
               {project.video && (
-                <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-2 py-0.5 rounded-md border border-white/20 text-[10px] text-white font-bold uppercase tracking-widest flex items-center gap-1.5">
+                <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-2 py-0.5 border border-white/20 text-[10px] text-white font-bold uppercase tracking-widest flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
                   Video
                 </div>
@@ -195,7 +178,7 @@ app.get('/', async (c) => {
                     const techList = ['cloudflare', 'hono', 'typescript', 'nodejs', 'bun', 'react', 'nextjs', 'golang', 'rust', 'cloudflare-workers', 'docker']
                     const isTech = techList.includes(tag.toLowerCase())
                     return (
-                      <span key={tag} className="px-2.5 py-1 bg-gray-50 dark:bg-neutral-800 text-gray-500 dark:text-neutral-400 text-[10px] font-bold uppercase tracking-wider rounded border border-gray-100 dark:border-neutral-700 group-hover:border-purple-100 dark:group-hover:border-purple-900 group-hover:bg-purple-50 dark:group-hover:bg-purple-900/30 transition-colors flex items-center gap-1.5">
+                      <span key={tag} className="px-2.5 py-1 bg-gray-50 dark:bg-neutral-800 text-gray-500 dark:text-neutral-400 text-[10px] font-bold uppercase tracking-wider border border-gray-100 dark:border-neutral-700 group-hover:border-purple-100 dark:group-hover:border-purple-900 group-hover:bg-purple-50 dark:group-hover:bg-purple-900/30 transition-colors flex items-center gap-1.5">
                         {isTech && <TechIcon name={tag.toLowerCase() as any} size={12} className="grayscale-0 opacity-100" />}
                         {tag}
                       </span>
@@ -241,21 +224,7 @@ app.get('/experiences', async (c) => {
 
   return c.render(
     <div className="max-w-4xl mx-auto px-4 py-12">
-      <div className="flex justify-between items-center mb-16">
-        <div className="flex items-center gap-6">
-          <a href={`/?lang=${lang}`} className="text-3xl font-black text-gray-900 dark:text-white tracking-tighter hover:opacity-80 transition-opacity">{t.name}</a>
-          <nav className="flex items-center ml-4 pl-6 border-l border-gray-100 dark:border-neutral-800 h-8 gap-6">
-            <a href={`/experiences?lang=${lang}`} className="text-xs font-bold text-purple-600 dark:text-purple-400 uppercase tracking-[0.2em]">{t.experiences}</a>
-            <a href="#" id="cv-trigger" className="text-xs font-bold text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors uppercase tracking-[0.2em]">{t.cv}</a>
-            <a href="#" id="contact-trigger" className="text-xs font-bold text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors uppercase tracking-[0.2em]">{t.contact}</a>
-          </nav>
-        </div>
-
-        <div className="flex items-center gap-4">
-          <ThemeToggle />
-        </div>
-
-      </div>
+      <Header name={t.name} lang={lang} t={t} currentPath={c.req.path} />
 
       <h1 className="text-4xl font-black text-gray-900 dark:text-white mb-12 tracking-tight">{t.experiences}</h1>
 
@@ -263,12 +232,12 @@ app.get('/experiences', async (c) => {
         {experiences.map((exp, idx) => (
           <div key={exp.company} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
             {/* Icon */}
-            <div className="flex items-center justify-center w-16 h-16 rounded-xl bg-white dark:bg-neutral-900 border border-gray-100 dark:border-neutral-800 absolute left-0 md:left-1/2 md:-translate-x-1/2 z-10 overflow-hidden">
+            <div className="flex items-center justify-center w-16 h-16 bg-white dark:bg-neutral-900 border border-gray-100 dark:border-neutral-800 absolute left-0 md:left-1/2 md:-translate-x-1/2 z-10 overflow-hidden">
               <img src={exp.logo} alt={exp.company} className="w-12 h-12 object-contain" />
             </div>
 
             {/* Content Card */}
-            <div className="w-[calc(100%-4.5rem)] md:w-[calc(50%-3rem)] bg-white dark:bg-neutral-900/50 p-6 rounded-2xl border border-gray-100 dark:border-neutral-800 transition-all hover:border-purple-500/50">
+            <div className="w-[calc(100%-4.5rem)] md:w-[calc(50%-3rem)] bg-white dark:bg-neutral-900/50 p-6 border border-gray-100 dark:border-neutral-800 transition-all hover:border-purple-500/50">
               <div className="flex flex-col mb-4">
                 <h3 className="text-xl font-black text-gray-900 dark:text-white leading-tight">{exp.company}</h3>
                 <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mt-1">{exp.location} • {exp.type}</span>
@@ -294,7 +263,7 @@ app.get('/experiences', async (c) => {
               {exp.skills && (
                 <div className="mt-6 pt-6 border-t border-gray-50 dark:border-neutral-800/50 flex flex-wrap gap-2">
                   {exp.skills.map(skill => (
-                    <span key={skill} className="px-2 py-0.5 bg-gray-50 dark:bg-neutral-800/50 text-gray-500 dark:text-neutral-400 text-[10px] font-bold uppercase tracking-widest rounded border border-gray-100 dark:border-neutral-800">
+                    <span key={skill} className="px-2 py-0.5 bg-gray-50 dark:bg-neutral-800/50 text-gray-500 dark:text-neutral-400 text-[10px] font-bold uppercase tracking-widest border border-gray-100 dark:border-neutral-800">
                       {skill}
                     </span>
                   ))}
@@ -353,28 +322,37 @@ app.get('/projects/:slug', async (c) => {
 
     return c.render(
       <div className="max-w-4xl mx-auto px-4 py-12">
-        <div className="mb-12 flex justify-between items-center">
-          <div className="flex items-center gap-6">
-            <a href={`/?lang=${lang}`} className="text-3xl font-black text-gray-900 dark:text-white tracking-tighter hover:opacity-80 transition-opacity">{t.name}</a>
-            <nav className="flex items-center ml-4 pl-6 border-l border-gray-100 dark:border-neutral-800 h-8 gap-6">
-              <a href={`/experiences?lang=${lang}`} className="text-xs font-bold text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors uppercase tracking-[0.2em]">{t.experiences}</a>
-              <a href="#" id="cv-trigger" className="text-xs font-bold text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors uppercase tracking-[0.2em]">{t.cv}</a>
-              <a href="#" id="contact-trigger" className="text-xs font-bold text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors uppercase tracking-[0.2em]">{t.contact}</a>
-            </nav>
-          </div>
-
-
-          <div className="flex items-center gap-4">
-            <ThemeToggle />
-          </div>
-        </div>
+        <Header name={t.name} lang={lang} t={t} currentPath={c.req.path} />
 
 
         {meta && (
           <div className="mb-12">
-            <h1 className="text-4xl font-black text-gray-900 dark:text-white mb-6">{meta[lang]?.title || meta.pt.title}</h1>
+            <h1 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-8 tracking-tight">{meta[lang]?.title || meta.pt.title}</h1>
 
-            <div className="aspect-video w-full bg-gray-100 dark:bg-neutral-900 rounded-xl overflow-hidden mb-8">
+            <div className="flex flex-wrap items-center gap-x-8 gap-y-4 mb-10 pb-10 border-b border-gray-100 dark:border-neutral-900">
+              <div className="flex flex-col gap-1">
+                <span className="text-[10px] font-bold text-gray-400 dark:text-neutral-500 uppercase tracking-[0.2em]">Role</span>
+                <span className="text-sm font-bold text-gray-900 dark:text-white">Fullstack Developer</span>
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <span className="text-[10px] font-bold text-gray-400 dark:text-neutral-500 uppercase tracking-[0.2em]">Tech Stack</span>
+                <div className="flex flex-wrap gap-2">
+                  {meta.tags?.map((tag: string) => {
+                    const techList = ['cloudflare', 'hono', 'typescript', 'nodejs', 'bun', 'react', 'nextjs', 'golang', 'rust', 'cloudflare-workers', 'docker']
+                    const isTech = techList.includes(tag.toLowerCase())
+                    return (
+                      <span key={tag} className="px-2 py-1 bg-gray-50 dark:bg-neutral-900 text-gray-500 dark:text-neutral-400 text-[10px] font-bold uppercase tracking-wider border border-gray-100 dark:border-neutral-800 flex items-center gap-1.5">
+                        {isTech && <TechIcon name={tag.toLowerCase() as TechName} size={12} className="grayscale-0 opacity-100" />}
+                        {tag}
+                      </span>
+                    )
+                  })}
+                </div>
+              </div>
+            </div>
+
+            <div className="aspect-video w-full bg-gray-100 dark:bg-neutral-900 overflow-hidden mb-12">
               {meta.video ? (
                 <video
                   src={meta.video}
@@ -385,24 +363,10 @@ app.get('/projects/:slug', async (c) => {
                 <img src={meta.cover} className="w-full h-full object-cover" />
               ) : null}
             </div>
-
-            <div className="flex flex-wrap gap-3 mb-8">
-              {meta.tags?.map((tag: string) => {
-                const techList = ['cloudflare', 'hono', 'typescript', 'nodejs', 'bun', 'react', 'nextjs', 'golang', 'rust', 'cloudflare-workers', 'docker']
-                const isTech = techList.includes(tag.toLowerCase())
-                return (
-                  <span key={tag} className="px-3 py-1.5 bg-gray-50 dark:bg-neutral-900 text-gray-500 dark:text-neutral-400 text-xs font-bold uppercase tracking-widest rounded-md border border-gray-200 dark:border-neutral-800 flex items-center gap-2">
-                    {isTech && <TechIcon name={tag.toLowerCase() as TechName} size={14} className="grayscale-0 opacity-100" />}
-                    {tag}
-                  </span>
-                )
-              })}
-            </div>
-
           </div>
         )}
 
-        <article className="prose prose-slate dark:prose-invert prose-lg prose-img:rounded-xl max-w-none">
+        <article className="prose prose-slate dark:prose-invert prose-lg prose-img:rounded-none max-w-none">
           <Content />
         </article>
         <ContactModal

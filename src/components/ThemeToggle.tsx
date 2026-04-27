@@ -6,7 +6,7 @@ export const ThemeToggle = () => {
       <button
         id="theme-toggle"
         className={cn(
-          "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+          "inline-flex items-center justify-center text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
           "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
           "h-9 w-9 px-0",
           "bg-white dark:bg-neutral-900 border-gray-200 dark:border-neutral-800 text-gray-500 dark:text-neutral-400 hover:bg-gray-100 dark:hover:bg-neutral-800 cursor-pointer"
