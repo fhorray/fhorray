@@ -1,8 +1,8 @@
 <div align="center">
 <h1 align="center">Hi 👋, I'm Francy</h1>
-<h4 align="center" style="max-width:200px;" >I'm Francyelton (Francy rsrs), I am 27 years old, living in São Paulo, Brazil. <br /> 
-I am a Graphic Designer with experience in UI Design and Front-End development. <br /> 
-I love creating responsive interfaces and writing clean and efficient code.<br />  In addition, I am passionate about technology, manga, games, and music.</h4>
+<h4 align="center">I am a Fullstack Developer specializing in Serverless architectures, mostly using serverless ecosystems. My passion is to build ultra-performance applications, combining the technical rigor of distributed systems with the aesthetic sensibility of UI/UX Design.<br/><br/>
+On the frontend, I use TypeScript, React, Next.js, and Tailwind to create intuitive and responsive interfaces. On the backend, I master Hono.js for edge computing environments, in addition to having solid experience with Node.js, Golang, and Rust for developing robust and secure APIs.<br/><br/>
+I believe that code should be organized, clean, and scalable. Whether creating architectures from scratch or optimizing existing systems, my goal is to deliver exceptional performance and global availability, ensuring that technology is the engine that drives an impeccable user experience.</h4>
 
 </div>
 

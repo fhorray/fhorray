@@ -15,7 +15,7 @@ export const ProjectCard = ({ project, lang }: ProjectCardProps) => {
     <a
       href={href}
       target={target}
-      className="group block bg-white dark:bg-neutral-900 overflow-hidden transition-all duration-300 border border-gray-100 dark:border-neutral-800 hover:border-purple-500/50"
+      className="group flex flex-col bg-white dark:bg-neutral-900 overflow-hidden transition-all duration-300 border border-gray-100 dark:border-neutral-800 hover:border-purple-500/50"
     >
       <div className="aspect-video bg-gray-50 dark:bg-neutral-800 relative overflow-hidden">
         {project.cover ? (
@@ -56,7 +56,7 @@ export const ProjectCard = ({ project, lang }: ProjectCardProps) => {
         )}
       </div>
 
-      <div className="p-4">
+      <div className="p-4 flex flex-col flex-1">
         <div className="flex justify-between items-start mb-2">
           <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
             {project.title}
@@ -71,7 +71,7 @@ export const ProjectCard = ({ project, lang }: ProjectCardProps) => {
         </p>
 
         {project.tags && (
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 mt-auto">
             {project.tags.map((tag: string) => {
               const techList = [
                 'cloudflare',
