@@ -1,4 +1,5 @@
 {
+  "enabled": false,
   "pt": {
     "title": "Arctic - Monitoramento SaaS de Alta Performance",
     "description": "Uma plataforma robusta para monitoramento de infraestrutura em tempo real, focada em desenvolvedores e equipes de SRE."
@@ -9,5 +10,4 @@
   },
   "cover": "/assets/projects/project-1/cover.png",
   "tags": ["React", "Nextjs", "TypeScript", "Tailwind", "Hono", "Cloudflare"]
-
 }

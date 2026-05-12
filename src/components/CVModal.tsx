@@ -22,21 +22,21 @@ export const CVModal = (props: {
 
           <div className="grid gap-3">
             <a
-              href="/assets/cvs/CV_PT.pdf"
-              download="Francy_Santos_CV_PT.pdf"
+              href="/assets/cvs/Francyelton_Santos_-_PT-BR.pdf"
+              download="Francy Santos - PT-BR.pdf"
               className="flex items-center justify-between p-4 bg-gray-50 dark:bg-neutral-800 hover:bg-purple-50 dark:hover:bg-purple-900/30 border border-gray-100 dark:border-neutral-700 transition-all group"
             >
               <span className="font-bold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400">{props.ptOption}</span>
-              <svg className="w-5 h-5 text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+              <svg className="w-5 h-5 text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" x2="12" y1="15" y2="3" /></svg>
             </a>
 
             <a
-              href="/assets/cvs/CV_ENG.pdf"
-              download="Francy_Santos_CV_EN.pdf"
+              href="/assets/cvs/Francyelton_Santos_-_EN.pdf"
+              download="Francy Santos - EN.pdf"
               className="flex items-center justify-between p-4 bg-gray-50 dark:bg-neutral-800 hover:bg-purple-50 dark:hover:bg-purple-900/30 border border-gray-100 dark:border-neutral-700 transition-all group"
             >
               <span className="font-bold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400">{props.enOption}</span>
-              <svg className="w-5 h-5 text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+              <svg className="w-5 h-5 text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" x2="12" y1="15" y2="3" /></svg>
             </a>
           </div>
         </div>

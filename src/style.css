@@ -14,7 +14,9 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Custom Code Block UI */
 .prose pre {
+  position: relative !important;
   padding: 0 !important;
+  padding-top: 32px !important; /* Space for header */
   background-color: #1e1e1e !important;
   border-radius: 0px !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
@@ -22,7 +24,6 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 2rem !important;
   margin-bottom: 2rem !important;
 }
-
 
 .prose pre code {
   display: block !important;
@@ -33,10 +34,19 @@ h1, h2, h3, h4, h5, h6 {
   border: none !important;
 }
 
+/* Fallback padding if there is no code tag inside pre */
+.prose pre:not(:has(code)) {
+  padding: 1.5rem !important;
+  padding-top: calc(32px + 1.5rem) !important;
+}
+
 /* Mock Window Header for Code Blocks */
 .prose pre::before {
   content: "";
-  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 32px;
   background-color: rgba(255, 255, 255, 0.05);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -46,10 +56,17 @@ h1, h2, h3, h4, h5, h6 {
   background-size: 24px 24px, 24px 24px, 24px 24px;
   background-position: 12px center, 32px center, 52px center;
   background-repeat: no-repeat;
+  z-index: 10;
 }
 
 .prose img {
   border-radius: 0px !important;
+}
+
+/* Keep shields/badges inline */
+.prose p img {
+  display: inline !important;
+  margin: 0 0.25rem !important;
 }
 
 /* Fix line spacing in general prose */
@@ -70,5 +87,11 @@ h1, h2, h3, h4, h5, h6 {
 .prose ul, .prose ol {
   margin-top: 1rem !important;
   margin-bottom: 1rem !important;
+}
+
+/* Remove default backticks added by Tailwind Typography */
+.prose code::before,
+.prose code::after {
+  content: "" !important;
 }
 

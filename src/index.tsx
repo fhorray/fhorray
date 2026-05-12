@@ -40,6 +40,8 @@ import { TechIcon, TechName } from './components/TechIcon';
 import { CVModal } from './components/CVModal';
 import { ThemeToggle } from './components/ThemeToggle';
 import { Header } from './components/Header';
+import { getAllProjects } from './lib/projects';
+import { ProjectCard } from './components/ProjectCard';
 
 app.use(renderer);
 
@@ -95,21 +97,10 @@ app.get('/', async (c) => {
   locale.set(lang);
   const t = await loadTranslations(messages);
 
-  const projectList = Object.entries(projectMeta).map(([path, meta]) => {
-    const slug = path.split('/')[3];
-    return {
-      slug,
-      ...meta.default,
-      title: meta.default[lang]?.title || meta.default.pt.title,
-      description:
-        meta.default[lang]?.description || meta.default.pt.description,
-      cover: meta.default.cover,
-      video: meta.default.video,
-    };
-  });
+  const projectList = await getAllProjects(c.env, lang);
 
   return c.render(
-    <div className="max-w-4xl mx-auto px-4 py-12">
+    <div className="max-w-5xl mx-auto px-4 py-12">
       <Header name={t.name} lang={lang} t={t} currentPath={c.req.path} />
 
       <div className="prose prose-slate dark:prose-invert max-w-none mb-12">
@@ -137,87 +128,19 @@ app.get('/', async (c) => {
       </div>
 
       {/* Projects */}
-      {/* 
-      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 border-b-2 border-gray-100 dark:border-slate-800 pb-4">
-        {t.projects}
-      </h2>
+      {projectList.length > 0 && (
+        <div className="mb-16">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 border-b-2 border-gray-100 dark:border-slate-800 pb-4">
+            {t.projects}
+          </h2>
 
-     
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-        {projectList.map((project) => (
-          <a
-            key={project.slug}
-            href={`/projects/${project.slug}`}
-            className="group block bg-white dark:bg-neutral-900 overflow-hidden transition-all duration-300 border border-gray-100 dark:border-neutral-800"
-          >
-            <div className="aspect-video bg-gray-50 dark:bg-neutral-800 relative overflow-hidden">
-              {project.cover ? (
-                <img
-                  src={project.cover}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-700"
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-200 dark:from-neutral-800 dark:to-neutral-900">
-                  <span className="text-gray-400 dark:text-neutral-600 font-bold text-2xl uppercase tracking-widest opacity-20">
-                    {project.title}
-                  </span>
-                </div>
-              )}
-              {project.video && (
-                <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-2 py-0.5 border border-white/20 text-[10px] text-white font-bold uppercase tracking-widest flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-                  Video
-                </div>
-              )}
-            </div>
-            <div className="p-4">
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
-                {project.title}
-              </h3>
-              <p className="text-gray-600 dark:text-neutral-400 text-sm line-clamp-2 leading-relaxed mb-6">
-                {project.description}
-              </p>
-              {project.tags && (
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag: string) => {
-                    const techList = [
-                      'cloudflare',
-                      'hono',
-                      'typescript',
-                      'nodejs',
-                      'bun',
-                      'react',
-                      'nextjs',
-                      'golang',
-                      'rust',
-                      'cloudflare-workers',
-                      'docker',
-                    ];
-                    const isTech = techList.includes(tag.toLowerCase());
-                    return (
-                      <span
-                        key={tag}
-                        className="px-2.5 py-1 bg-gray-50 dark:bg-neutral-800 text-gray-500 dark:text-neutral-400 text-[10px] font-bold uppercase tracking-wider border border-gray-100 dark:border-neutral-700 group-hover:border-purple-100 dark:group-hover:border-purple-900 group-hover:bg-purple-50 dark:group-hover:bg-purple-900/30 transition-colors flex items-center gap-1.5"
-                      >
-                        {isTech && (
-                          <TechIcon
-                            name={tag.toLowerCase() as any}
-                            size={12}
-                            className="grayscale-0 opacity-100"
-                          />
-                        )}
-                        {tag}
-                      </span>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-          </a>
-        ))}
-      </div>
-      */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            {projectList.map((project) => (
+              <ProjectCard key={project.slug} project={project} lang={lang} />
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Modals */}
       <ContactModal
@@ -231,6 +154,11 @@ app.get('/', async (c) => {
         errorMessage={t.modalError}
       />
       <CVModal title={t.cvModalTitle} ptOption={t.cvPT} enOption={t.cvEN} />
+
+      {/* Footer */}
+      <footer className="mt-24 border-t border-gray-100 dark:border-neutral-800 pt-8 pb-12 text-center text-xs text-gray-400 dark:text-neutral-500">
+        <p>&copy; {new Date().getFullYear()} Francy Santos.</p>
+      </footer>
     </div>,
 
     { title: t.name },
@@ -245,7 +173,7 @@ app.get('/experiences', async (c) => {
   const t = (await import(`../public/translations/${lang}.json`)).default.home;
 
   return c.render(
-    <div className="max-w-4xl mx-auto px-4 py-12">
+    <div className="max-w-5xl mx-auto px-4 py-12">
       <Header name={t.name} lang={lang} t={t} currentPath={c.req.path} />
 
       <h1 className="text-4xl font-black text-gray-900 dark:text-white mb-12 tracking-tight">
@@ -362,7 +290,7 @@ app.get('/projects/:slug', async (c) => {
     const Content = mod.default;
 
     return c.render(
-      <div className="max-w-4xl mx-auto px-4 py-12">
+      <div className="max-w-5xl mx-auto px-4 py-12">
         <Header name={t.name} lang={lang} t={t} currentPath={c.req.path} />
 
         {meta && (
@@ -449,6 +377,68 @@ app.get('/projects/:slug', async (c) => {
 
       { title: meta[lang]?.title || meta.pt.title },
     );
+  }
+
+  // Fallback: Try to render GitHub README if it's not a local project
+  const username = 'fhorray';
+  try {
+    const response = await fetch(`https://api.github.com/repos/${username}/${slug}/contents/README.md`, {
+      headers: {
+        'User-Agent': 'fhorray-portfolio',
+        'Accept': 'application/vnd.github.v3.html',
+        ...(c.env.GITHUB_TOKEN ? { 'Authorization': `token ${c.env.GITHUB_TOKEN}` } : {})
+      }
+    });
+
+    if (response.ok) {
+      const html = await response.text();
+      return c.render(
+        <div className="max-w-5xl mx-auto px-4 py-12">
+          <Header name={t.name} lang={lang} t={t} currentPath={c.req.path} />
+
+          <article className="prose prose-slate dark:prose-invert prose-lg max-w-none mt-12" dangerouslySetInnerHTML={{ __html: html }} />
+
+          {/* Client-side syntax highlighting for GitHub README */}
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+          <script dangerouslySetInnerHTML={{
+            __html: `
+            setTimeout(() => {
+              document.querySelectorAll('[class*="highlight-source-"]').forEach(el => {
+                const lang = Array.from(el.classList).find(c => c.startsWith('highlight-source-')).replace('highlight-source-', '');
+                const pre = el.querySelector('pre');
+                if (pre) {
+                  let code = pre.querySelector('code');
+                  if (!code) {
+                    code = document.createElement('code');
+                    code.innerHTML = pre.innerHTML;
+                    pre.innerHTML = '';
+                    pre.appendChild(code);
+                  }
+                  code.classList.add('language-' + lang);
+                  hljs.highlightElement(code);
+                }
+              });
+              hljs.highlightAll();
+            }, 100);
+          ` }} />
+
+          <ContactModal
+            title={t.modalTitle}
+            nameLabel={t.modalName}
+            namePlaceholder={t.modalNamePlaceholder}
+            messageLabel={t.modalMessage}
+            messagePlaceholder={t.modalMessagePlaceholder}
+            sendButton={t.modalSend}
+            successMessage={t.modalSuccess}
+            errorMessage={t.modalError}
+          />
+          <CVModal title={t.cvModalTitle} ptOption={t.cvPT} enOption={t.cvEN} />
+        </div>,
+        { title: slug }
+      );
+    }
+  } catch (error) {
+    console.error('Error fetching README from GitHub:', error);
   }
 
   return c.notFound();

@@ -9,28 +9,32 @@
         "pt": {
           "title": "Full-stack Developer",
           "period": "jan de 2025 - o momento",
-          "duration": "4 meses"
+          "duration": "1 ano 4 meses",
+          "description": "Desenvolvimento e manutenção de interfaces web responsivas utilizando React, Next.js e TypeScript. Criação de componentes reutilizáveis e participação na integração de backend."
         },
         "en": {
           "title": "Full-stack Developer",
           "period": "Jan 2025 - Present",
-          "duration": "4 months"
+          "duration": "1 year 4 months",
+          "description": "Developed and maintained responsive web interfaces using React, Next.js, and TypeScript. Built reusable UI components and participated in backend integration."
         }
       },
       {
         "pt": {
           "title": "Front-end Developer / Web Designer Jr.",
           "period": "out de 2023 - jan de 2025",
-          "duration": "1 ano 4 meses"
+          "duration": "1 ano 4 meses",
+          "description": "Desenvolvimento de interfaces institucionais e páginas de campanha. Foco em performance e consistência visual."
         },
         "en": {
           "title": "Front-end Developer / Web Designer Jr.",
           "period": "Oct 2023 - Jan 2025",
-          "duration": "1 year 4 months"
+          "duration": "1 year 4 months",
+          "description": "Developed institutional interfaces and campaign pages. Focused on performance and visual consistency."
         }
       }
     ],
-    "skills": ["React.js", "SASS", "TypeScript", "Node.js"]
+    "skills": ["React.js", "SASS", "TypeScript", "Node.js", "Next.js", "TailwindCSS"]
   },
   {
     "company": "Celine Estratégias",
@@ -40,7 +44,7 @@
     "roles": [
       {
         "pt": {
-          "title": "Web Designer",
+          "title": "Desenvolvedor Front-end Jr.",
           "period": "mai de 2023 - fev de 2024",
           "duration": "10 meses",
           "description": "Criação de protótipos e implementação para clientes da agência."

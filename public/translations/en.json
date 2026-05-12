@@ -1,7 +1,7 @@
 {
   "home": {
     "name": "Francy Santos",
-    "bio": "I am a Fullstack Developer specialist in Serverless architectures and high-scalability solutions. With a solid background in Graphic Design and UI, I blend aesthetics and performance within the Cloudflare ecosystem (Workers, KV, D1, R2 etc...), while also mastering platforms like Vercel and AWS Amplify.\n\nI transform complex ideas into complete and high-performance digital experiences, always prioritizing Developer Experience and the delivery of robust end-to-end products.",
+    "bio": "I am a Fullstack Developer specializing in Serverless architectures, with a full focus on the Cloudflare ecosystem (Workers, D1, KV, R2). My passion is building ultra-performance applications, blending the technical rigor of distributed systems with the aesthetic sensibility of UI/UX Design.\n\nOn the frontend, I use TypeScript, React, Next.js, and Tailwind to create intuitive and responsive interfaces. On the backend, I master Hono.js for Edge Computing environments, alongside solid experience with Node.js, Golang, and Rust for developing robust and secure APIs. This versatility allows me to choose the ideal tool for each scenario, from lightweight edge functions to complex, optimized systems.\n\nI believe code should be organized, clean, and scalable. Whether creating architectures from scratch or optimizing existing systems, my goal is to deliver exceptional performance and global availability, ensuring that technology is the engine that drives an impeccable user experience.",
     "projects": "Projects:",
     "experiences": "Experiences",
     "cv": "Download CV",
